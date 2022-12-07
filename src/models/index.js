@@ -1,7 +1,7 @@
-import Sequelize from "sequelize";
+const Sequelize = require("sequelize");
 
-import getUserModel from "./user";
-import getTaskModel from "./task";
+const getUserModel = require("./user");
+const getTaskModel = require("./task");
 
 const sequelize = new Sequelize(
   process.env.DATABASE,
@@ -9,6 +9,8 @@ const sequelize = new Sequelize(
   process.env.DATABASE_PASSWORD,
   {
     dialect: "postgres",
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
   }
 );
 
@@ -17,6 +19,7 @@ const models = {
   Task: getTaskModel(sequelize, Sequelize),
 };
 
-export { sequelize };
-
-export default models;
+module.exports = {
+  sequelize,
+  models,
+};
