@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports.authMiddleware = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) {
-    return res.status(403).send("Unauthorized");
+    return res.status(403).send("無許可");
   }
 
   const [_, token] = authorization.split(" ");
@@ -12,6 +12,6 @@ module.exports.authMiddleware = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    return res.status(403).send("Unauthorized");
+    return res.status(403).send("無許可");
   }
 };

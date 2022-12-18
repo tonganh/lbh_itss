@@ -7,6 +7,17 @@ const getTaskModel = (sequelize, { DataTypes }) => {
         autoIncrement: true,
         primaryKey: true,
       },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: true,
+        }
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       content: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -14,7 +25,16 @@ const getTaskModel = (sequelize, { DataTypes }) => {
           notEmpty: true,
         },
       },
-      deadline: {
+      priority: {
+        type: DataTypes.ENUM,
+        values: ["LOW", "MEDIUM", "HIGH"],
+        defaultValue: "LOW",
+        allowNull: false,
+        validate: {
+          notEmpty: true
+        }
+      },
+      start_time: {
         type: DataTypes.DATE,
         allowNull: false,
         validate: {
@@ -22,7 +42,8 @@ const getTaskModel = (sequelize, { DataTypes }) => {
         },
       },
       progress: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM,
+        values: [0, 20, 50, 80, 100],
         allowNull: false,
         defaultValue: 0,
         validate: {
@@ -30,9 +51,10 @@ const getTaskModel = (sequelize, { DataTypes }) => {
         },
       },
       status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM,
+        values: ["TODO", "IN PROGRESS", "PENDING", "DONE"],
         allowNull: false,
-        defaultValue: "pending",
+        defaultValue: "TODO",
         validate: {
           notEmpty: true,
         },
@@ -46,9 +68,9 @@ const getTaskModel = (sequelize, { DataTypes }) => {
       },
     },
     {
-      timestamps: false,
-      createdAt: false,
-      updatedAt: false,
+      timestamps: true,
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     }
   );
 

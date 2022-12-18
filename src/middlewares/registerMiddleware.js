@@ -1,8 +1,8 @@
 const yup = require("yup");
 
 const schema = yup.object().shape({
-  username: yup.string().required().max(255),
-  password: yup.string().required().max(255),
+  name: yup.string().required().max(255),
+  password: yup.string().required().min(8).max(255),
   email: yup.string().email().required().max(255),
 });
 

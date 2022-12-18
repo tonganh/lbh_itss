@@ -7,9 +7,8 @@ const getUserModel = (sequelize, { DataTypes }) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      username: {
+      name: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
         validate: {
           notEmpty: true,
@@ -21,19 +20,24 @@ const getUserModel = (sequelize, { DataTypes }) => {
         allowNull: false,
         validate: {
           notEmpty: true,
+          isEmail: true,
         },
       },
       password: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
         validate: {
           notEmpty: true,
         },
-      },
+      }
     },
-    { timestamps: false, createdAt: false, updatedAt: false }
+    {
+      timestamps: true,
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
   );
+
 
   return User;
 };
