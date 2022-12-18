@@ -11,11 +11,15 @@ app.use(cors())
 app.use(express.json());
 app.use("/auth", authController);
 app.use("/tasks", tasksController);
+app.use("/", (req, res) => {
+  return res.send({
+    message: "Running",
+  });
+});
 
 sequelize.authenticate().then(() => {
   sequelize.sync();
   app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
   });
-  
 });
