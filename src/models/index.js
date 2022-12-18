@@ -4,13 +4,18 @@ const getUserModel = require("./user");
 const getTaskModel = require("./task");
 
 const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.DATABASE_USER,
-  process.env.DATABASE_PASSWORD,
+  "sunflower",
+  "admin",
+  "admin",
   {
-    dialect: "postgres",
-    host: process.env.DATABASE_HOST,
-    port: process.env.DATABASE_PORT,
+    host: "0.0.0.0",
+    dialect: "sqlite",
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+    storage: "./db/database.sqlite"
   }
 );
 
