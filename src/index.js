@@ -4,7 +4,7 @@ const authController = require("./controllers/auth");
 const tasksController = require("./controllers/tasks");
 const { sequelize } = require("./models");
 const herokuAwake = require("heroku-awake");
-const url = "https://sunflower-itss.herokuapp.com";
+const url = "https://pear-codfish-kit.cyclic.app";
 
 const app = express();
 const cors = require('cors')
