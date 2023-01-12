@@ -15,7 +15,7 @@ const configOptions = {
 
 module.exports.createDailyJob = () => {
   const job = new CronJob(
-    "0 23 10 * * *",
+    "0 0 8 * * *",
     function () {
       console.log("Running Send Mail Job");
       const { Task, User } = models;
