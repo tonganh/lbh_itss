@@ -13,7 +13,7 @@ const schema = yup.object().shape({
 
 module.exports.createTaskMiddleware = (req, res, next) => {
   try {
-    schema.validateSync(req.body);
+    // schema.validateSync(req.body);
     next();
   } catch (err) {
     res.status(400).send(err.errors);

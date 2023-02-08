@@ -69,7 +69,7 @@ module.exports.createDailyJob = () => {
         const startTimeFormated = new Date(dateAfterFormatSecond)
 
         const diffMs = presentTime - dateAfterFormatSecond
-        const diffMins = Math.round((diffMs) / 60000); // minutes
+        const diffMins = (diffMs) / 60000; // minutes
         console.log("🚀 ~ file: mail.js:67 ~ awaitPromise.all ~ diffMins", diffMins)
         const diffMinuteNeedSendMail = 16
         // const conditionSendMail = diffMins === diffMinuteNeedSendMail
@@ -96,6 +96,7 @@ module.exports.createDailyJob = () => {
             const sendMailRes = await axios.post(linkEmailUseForsend, {
               email: email, content: contentSendMail
             })
+            console.log("🚀 ~ file: mail.js:99 ~ awaitPromise.all ~ sendMailRes", sendMailRes)
           } catch (error) {
             console.log(error);
           }

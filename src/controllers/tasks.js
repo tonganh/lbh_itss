@@ -16,20 +16,24 @@ router.get("/", authMiddleware, async (req, res) => {
 });
 
 router.post("/", authMiddleware, createTaskMiddleware, async (req, res) => {
-  const { Task } = models;
-  const { title, description, content, priority, start_time, progress, status, user_id } = req.body;
-  const task = await Task.create({
-    title,
-    description,
-    content,
-    priority,
-    start_time,
-    progress,
-    status: status,
-    progress: progress,
-    user_id: user_id,
-  });
-  return res.status(201).send(task);
+  try {
+    const { Task } = models;
+    const { title, description, content, priority, start_time, progress, status, user_id } = req.body;
+    const task = await Task.create({
+      title,
+      description,
+      content,
+      priority,
+      start_time,
+      progress,
+      status: status,
+      progress: progress,
+      user_id: user_id,
+    });
+    return res.status(201).send(task);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/:id", authMiddleware, async (req, res) => {
