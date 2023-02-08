@@ -81,7 +81,7 @@ module.exports.createDailyJob = () => {
             }
           })
           const { email, name } = userNeedSendMail
-          const remindTimeContent = diffMins < 0 ? 'Đã bị quá hạn!' : 'Chỉ còn 15 phút nữa là đến deadline rồi, nhanh cái tay lên bạn ơi!!!'
+          const remindTimeContent = diffMins === 0 ? 'Đã bị quá hạn!' : 'Chỉ còn 15 phút nữa là đến deadline rồi, nhanh cái tay lên bạn ơi!!!'
           const contentSendMail = `
             ${name} thân mến\
             ${remindTimeContent} \
